@@ -1,0 +1,52 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Run Proposed CNN Algorithm</h2>
+    <p>Train and evaluate the Convolutional Neural Network model</p>
+</div>
+
+<div class="form-card">
+    <p class="info-text">The CNN deep learning model will be trained using EEG signal features. If a pre-trained model exists it will be loaded, otherwise training will begin (this may take a few minutes).</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-primary">Run CNN Algorithm</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">CNN Algorithm completed successfully!</div>
+
+<div class="result-card">
+    <h3>CNN Performance Metrics</h3>
+    <div class="metrics-grid">
+        <div class="metric-box metric-blue">
+            <div class="metric-value">{{ metrics.accuracy }}%</div>
+            <div class="metric-label">Accuracy</div>
+        </div>
+        <div class="metric-box metric-green">
+            <div class="metric-value">{{ metrics.precision }}%</div>
+            <div class="metric-label">Precision</div>
+        </div>
+        <div class="metric-box metric-orange">
+            <div class="metric-value">{{ metrics.recall }}%</div>
+            <div class="metric-label">Recall</div>
+        </div>
+        <div class="metric-box metric-purple">
+            <div class="metric-value">{{ metrics.fscore }}%</div>
+            <div class="metric-label">F1 Score</div>
+        </div>
+    </div>
+</div>
+
+<div class="result-card">
+    <h3>CNN Confusion Matrix</h3>
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ metrics.confusion_chart }}" alt="Confusion Matrix" class="chart-img">
+    </div>
+</div>
+{% endif %}
+{% endblock %}

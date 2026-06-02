@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Detection using EEG</title>
+    <link rel="stylesheet" href="{% static 'depression_detection/css/style.css' %}">
+</head>
+<body>
+{% if request.session.logged_in %}
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>EEG System</h2>
+            <p>Welcome, {{ request.session.username }}</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">&#8962; Dashboard</a>
+            <a href="{% url 'upload_dataset' %}" class="nav-link {% if request.resolver_match.url_name == 'upload_dataset' %}active{% endif %}">&#8679; Upload Dataset</a>
+            <a href="{% url 'features_extraction' %}" class="nav-link {% if request.resolver_match.url_name == 'features_extraction' %}active{% endif %}">&#9881; Features Extraction</a>
+            <a href="{% url 'run_svm' %}" class="nav-link {% if request.resolver_match.url_name == 'run_svm' %}active{% endif %}">&#9656; Run SVM Algorithm</a>
+            <a href="{% url 'run_cnn' %}" class="nav-link {% if request.resolver_match.url_name == 'run_cnn' %}active{% endif %}">&#9654; Run CNN Algorithm</a>
+            <a href="{% url 'predict_depression' %}" class="nav-link {% if request.resolver_match.url_name == 'predict_depression' %}active{% endif %}">&#128269; Predict Depression</a>
+            <a href="{% url 'comparison_graph' %}" class="nav-link {% if request.resolver_match.url_name == 'comparison_graph' %}active{% endif %}">&#128200; Comparison Graph</a>
+            <a href="{% url 'prediction_history' %}" class="nav-link {% if request.resolver_match.url_name == 'prediction_history' %}active{% endif %}">&#128196; Prediction History</a>
+            <a href="{% url 'logout' %}" class="nav-link logout-link">&#9099; Logout</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="top-bar">
+            <h1>Depression Detection using EEG</h1>
+        </div>
+        <div class="content-area">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% else %}
+{% block auth_content %}{% endblock %}
+{% endif %}
+</body>
+</html>

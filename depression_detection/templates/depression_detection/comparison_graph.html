@@ -1,0 +1,60 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Comparison Graph</h2>
+    <p>Performance comparison between SVM and CNN algorithms</p>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="result-card">
+    <h3>Algorithm Performance Comparison</h3>
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ chart }}" alt="Comparison Graph" class="chart-img">
+    </div>
+</div>
+
+<div class="result-card">
+    <h3>Detailed Metrics</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>SVM</th>
+                <th>CNN</th>
+                <th>Better</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accuracy (%)</td>
+                <td>{{ svm.accuracy }}</td>
+                <td>{{ cnn.accuracy }}</td>
+                <td>{% if cnn.accuracy >= svm.accuracy %}<span class="badge badge-green">CNN</span>{% else %}<span class="badge badge-orange">SVM</span>{% endif %}</td>
+            </tr>
+            <tr>
+                <td>Precision (%)</td>
+                <td>{{ svm.precision }}</td>
+                <td>{{ cnn.precision }}</td>
+                <td>{% if cnn.precision >= svm.precision %}<span class="badge badge-green">CNN</span>{% else %}<span class="badge badge-orange">SVM</span>{% endif %}</td>
+            </tr>
+            <tr>
+                <td>Recall (%)</td>
+                <td>{{ svm.recall }}</td>
+                <td>{{ cnn.recall }}</td>
+                <td>{% if cnn.recall >= svm.recall %}<span class="badge badge-green">CNN</span>{% else %}<span class="badge badge-orange">SVM</span>{% endif %}</td>
+            </tr>
+            <tr>
+                <td>F1 Score (%)</td>
+                <td>{{ svm.fscore }}</td>
+                <td>{{ cnn.fscore }}</td>
+                <td>{% if cnn.fscore >= svm.fscore %}<span class="badge badge-green">CNN</span>{% else %}<span class="badge badge-orange">SVM</span>{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

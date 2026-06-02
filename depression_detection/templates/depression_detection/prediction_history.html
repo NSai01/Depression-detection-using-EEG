@@ -1,0 +1,41 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Prediction History</h2>
+    <p>All previously predicted EEG signal results</p>
+</div>
+
+<div class="result-card">
+    {% if records %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Signal Filename</th>
+                <th>Prediction Result</th>
+                <th>Predicted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rec in records %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ rec.signal_filename }}</td>
+                <td>
+                    <span class="badge {% if rec.prediction_result == 'Normal' %}badge-green{% else %}badge-red{% endif %}">
+                        {{ rec.prediction_result }}
+                    </span>
+                </td>
+                <td>{{ rec.predicted_at|date:"d M Y, H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>No prediction history found. Please run the Predict Depression module first.</p>
+        <a href="{% url 'predict_depression' %}" class="btn-primary">Go to Predict</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Run Existing SVM Algorithm</h2>
+    <p>Train and evaluate the Support Vector Machine model</p>
+</div>
+
+<div class="form-card">
+    <p class="info-text">The SVM algorithm will be trained on the extracted EEG features and evaluated using accuracy, precision, recall, and F1-score metrics.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-primary">Run SVM Algorithm</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">SVM Algorithm completed successfully!</div>
+
+<div class="result-card">
+    <h3>SVM Performance Metrics</h3>
+    <div class="metrics-grid">
+        <div class="metric-box metric-blue">
+            <div class="metric-value">{{ metrics.accuracy }}%</div>
+            <div class="metric-label">Accuracy</div>
+        </div>
+        <div class="metric-box metric-green">
+            <div class="metric-value">{{ metrics.precision }}%</div>
+            <div class="metric-label">Precision</div>
+        </div>
+        <div class="metric-box metric-orange">
+            <div class="metric-value">{{ metrics.recall }}%</div>
+            <div class="metric-label">Recall</div>
+        </div>
+        <div class="metric-box metric-purple">
+            <div class="metric-value">{{ metrics.fscore }}%</div>
+            <div class="metric-label">F1 Score</div>
+        </div>
+    </div>
+</div>
+
+<div class="result-card">
+    <h3>SVM Confusion Matrix</h3>
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ metrics.confusion_chart }}" alt="Confusion Matrix" class="chart-img">
+    </div>
+</div>
+{% endif %}
+{% endblock %}

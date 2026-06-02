@@ -1,0 +1,63 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Predict Depression from Test Signals</h2>
+    <p>Upload test EEG signal CSV file to predict depression</p>
+</div>
+
+<div class="form-card">
+    <p class="info-text">Upload a test EEG signal CSV file. The CNN model will classify each record as Normal or Depressed.</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="test_file">Select Test Signal File (CSV)</label>
+            <input type="file" id="test_file" name="test_file" accept=".csv" required>
+        </div>
+        <button type="submit" class="btn-primary">Predict Depression</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">Prediction completed for {{ total }} records!</div>
+
+<div class="result-card">
+    <h3>Prediction Summary</h3>
+    <table class="info-table">
+        <tr><th>File</th><td>{{ filename }}</td></tr>
+        <tr><th>Total Records</th><td>{{ total }}</td></tr>
+        <tr><th>Normal</th><td class="text-green">{{ normal_count }}</td></tr>
+        <tr><th>Depressed</th><td class="text-red">{{ depressed_count }}</td></tr>
+    </table>
+</div>
+
+<div class="result-card">
+    <h3>Prediction Results</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Record</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.index }}</td>
+                <td>Record {{ row.index }}</td>
+                <td>
+                    <span class="badge {% if row.result == 'Normal' %}badge-green{% else %}badge-red{% endif %}">
+                        {{ row.result }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

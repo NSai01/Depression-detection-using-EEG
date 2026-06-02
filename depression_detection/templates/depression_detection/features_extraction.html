@@ -1,0 +1,38 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Features Extraction</h2>
+    <p>Preprocess and extract features from the EEG dataset</p>
+</div>
+
+<div class="form-card">
+    <p class="info-text">This module performs missing value replacement, normalization, and splits the dataset into 80% training and 20% testing data.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-primary">Run Features Extraction</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">Features extracted successfully!</div>
+
+<div class="result-card">
+    <h3>Extraction Results</h3>
+    <table class="info-table">
+        <tr><th>Total Features per Record</th><td>{{ total_features }}</td></tr>
+        <tr><th>Total Records in Dataset</th><td>{{ total_records }}</td></tr>
+        <tr><th>Training Records (80%)</th><td>{{ train_records }}</td></tr>
+        <tr><th>Testing Records (20%)</th><td>{{ test_records }}</td></tr>
+    </table>
+</div>
+
+<div class="result-card">
+    <h3>Sample Extracted Features (First 3 Records)</h3>
+    <div class="output-box">{{ sample_features|safe }}</div>
+</div>
+{% endif %}
+{% endblock %}

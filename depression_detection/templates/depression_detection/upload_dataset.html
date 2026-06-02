@@ -1,0 +1,43 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Upload EEG-Signal Dataset</h2>
+    <p>Upload the EEG signal CSV dataset for analysis</p>
+</div>
+
+<div class="form-card">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="dataset_file">Select EEG Dataset (CSV file)</label>
+            <input type="file" id="dataset_file" name="dataset_file" accept=".csv" required>
+        </div>
+        <button type="submit" class="btn-primary">Upload Dataset</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">Dataset uploaded and loaded successfully!</div>
+
+<div class="result-card">
+    <h3>Dataset Information</h3>
+    <table class="info-table">
+        <tr><th>Filename</th><td>{{ filename }}</td></tr>
+        <tr><th>Total Records</th><td>{{ total }}</td></tr>
+        <tr><th>Normal Records (0)</th><td>{{ normal }}</td></tr>
+        <tr><th>Depressed Records (1)</th><td>{{ depressed }}</td></tr>
+    </table>
+</div>
+
+<div class="result-card">
+    <h3>Class Distribution Chart</h3>
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ chart }}" alt="Class Distribution" class="chart-img">
+    </div>
+</div>
+{% endif %}
+{% endblock %}

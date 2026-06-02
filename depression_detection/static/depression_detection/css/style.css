@@ -1,0 +1,585 @@
+/* ============================
+   GLOBAL RESET & BASE
+   ============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    font-size: 14px;
+}
+
+/* ============================
+   LOGIN PAGE
+   ============================ */
+.login-body {
+    background: #7b2ff7;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 40px 35px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-size: 22px;
+    color: #7b2ff7;
+    margin-bottom: 5px;
+}
+
+.login-header h2 {
+    font-size: 16px;
+    color: #555;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #888;
+    font-size: 13px;
+}
+
+.login-hint {
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* ============================
+   FORMS
+   ============================ */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+    font-size: 13px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #fafafa;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #fafafa;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #7b2ff7;
+    background: #fff;
+}
+
+.form-group.email-group label {
+    color: #7b2ff7;
+}
+
+.form-group.email-group input,
+.form-group.email-group .form-input,
+#email {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    display: block;
+    background: #fdf7ff;
+    border-color: #d7b3ff;
+}
+
+.form-group.email-group input:focus,
+.form-group.email-group .form-input:focus,
+#email:focus {
+    outline: none;
+    border-color: #8c4dff;
+    background: #fff;
+}
+
+.info-text {
+    color: #555;
+    margin-bottom: 18px;
+    line-height: 1.6;
+    background: #f8f8ff;
+    border-left: 4px solid #7b2ff7;
+    padding: 10px 14px;
+    border-radius: 4px;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 28px;
+    background: #7b2ff7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #5c1fcf;
+    color: #fff;
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-card {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 7px 20px;
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: background 0.2s;
+}
+
+.btn-card:hover {
+    background: rgba(255,255,255,0.4);
+    color: #fff;
+}
+
+/* ============================
+   ALERTS
+   ============================ */
+.alert {
+    padding: 12px 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background: #ffe0e0;
+    color: #c0392b;
+    border-left: 4px solid #c0392b;
+}
+
+.alert-success {
+    background: #e0f7e9;
+    color: #27ae60;
+    border-left: 4px solid #27ae60;
+}
+
+/* ============================
+   LAYOUT: SIDEBAR + MAIN
+   ============================ */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    background: #2c2c54;
+    color: #fff;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    background: #1e1e3f;
+    border-bottom: 1px solid #3a3a70;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    color: #a78bfa;
+    margin-bottom: 4px;
+}
+
+.sidebar-header p {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.sidebar-nav {
+    padding: 14px 0;
+    flex: 1;
+}
+
+.nav-link {
+    display: block;
+    padding: 11px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    background: #3a3a70;
+    color: #fff;
+    border-left-color: #a78bfa;
+}
+
+.nav-link.active {
+    background: #3a3a70;
+    color: #a78bfa;
+    border-left-color: #a78bfa;
+    font-weight: bold;
+}
+
+.logout-link {
+    margin-top: auto;
+    color: #ff7f7f;
+}
+
+.logout-link:hover {
+    background: #3a3a70;
+    color: #ff4444;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.top-bar {
+    background: #7b2ff7;
+    color: #fff;
+    padding: 14px 28px;
+}
+
+.top-bar h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content-area {
+    padding: 28px;
+    flex: 1;
+}
+
+/* ============================
+   PAGE TITLE
+   ============================ */
+.page-title {
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.page-title h2 {
+    font-size: 20px;
+    color: #2c2c54;
+}
+
+.page-title p {
+    color: #777;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+/* ============================
+   DASHBOARD CARDS
+   ============================ */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.card {
+    border-radius: 8px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.card-content h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.card-content p {
+    font-size: 12px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.card-blue   { background: #2196F3; }
+.card-green  { background: #4CAF50; }
+.card-orange { background: #FF9800; }
+.card-purple { background: #9C27B0; }
+.card-red    { background: #F44336; }
+.card-teal   { background: #009688; }
+.card-dark   { background: #607D8B; }
+
+/* ============================
+   INFO BOX
+   ============================ */
+.info-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #7b2ff7;
+}
+
+.info-box h3 {
+    font-size: 16px;
+    color: #2c2c54;
+    margin-bottom: 12px;
+}
+
+.info-box p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.info-box ul {
+    padding-left: 20px;
+}
+
+.info-box li {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* ============================
+   FORM CARD
+   ============================ */
+.form-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 22px;
+}
+
+/* ============================
+   RESULT CARD
+   ============================ */
+.result-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 22px;
+}
+
+.result-card h3 {
+    font-size: 16px;
+    color: #2c2c54;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ============================
+   TABLES
+   ============================ */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.info-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: #f0f0f0;
+    color: #444;
+    font-weight: bold;
+    width: 200px;
+    border: 1px solid #e0e0e0;
+}
+
+.info-table td {
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead th {
+    background: #2c2c54;
+    color: #fff;
+    padding: 11px 14px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.data-table tbody tr:hover {
+    background: #f0eeff;
+}
+
+.data-table tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 13px;
+}
+
+/* ============================
+   METRICS GRID
+   ============================ */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.metric-box {
+    border-radius: 8px;
+    padding: 20px 16px;
+    text-align: center;
+    color: #fff;
+}
+
+.metric-value {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.metric-label {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.metric-blue   { background: #2196F3; }
+.metric-green  { background: #4CAF50; }
+.metric-orange { background: #FF9800; }
+.metric-purple { background: #9C27B0; }
+
+/* ============================
+   CHART
+   ============================ */
+.chart-container {
+    text-align: center;
+}
+
+.chart-img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+/* ============================
+   OUTPUT BOX
+   ============================ */
+.output-box {
+    background: #1e1e3f;
+    color: #a0e0a0;
+    padding: 16px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    max-height: 200px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+/* ============================
+   BADGES
+   ============================ */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-green  { background: #e0f7e9; color: #27ae60; }
+.badge-red    { background: #ffe0e0; color: #c0392b; }
+.badge-orange { background: #fff3e0; color: #e67e22; }
+
+/* ============================
+   MISC
+   ============================ */
+.text-green { color: #27ae60; font-weight: bold; }
+.text-red   { color: #c0392b; font-weight: bold; }
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+}
+
+.empty-state p {
+    margin-bottom: 16px;
+    font-size: 15px;
+}

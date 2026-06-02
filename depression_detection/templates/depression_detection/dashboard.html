@@ -1,0 +1,77 @@
+{% extends 'depression_detection/base.html' %}
+{% block content %}
+<div class="page-title">
+    <h2>Dashboard</h2>
+    <p>Welcome to the Depression Detection using EEG System</p>
+</div>
+
+<div class="card-grid">
+    <div class="card card-blue">
+        <div class="card-icon">&#8679;</div>
+        <div class="card-content">
+            <h3>Upload Dataset</h3>
+            <p>Upload EEG signal CSV dataset for analysis</p>
+            <a href="{% url 'upload_dataset' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-green">
+        <div class="card-icon">&#9881;</div>
+        <div class="card-content">
+            <h3>Feature Extraction</h3>
+            <p>Extract and preprocess EEG signal features</p>
+            <a href="{% url 'features_extraction' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-orange">
+        <div class="card-icon">&#9656;</div>
+        <div class="card-content">
+            <h3>Run SVM</h3>
+            <p>Train and evaluate the SVM classification model</p>
+            <a href="{% url 'run_svm' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-purple">
+        <div class="card-icon">&#9654;</div>
+        <div class="card-content">
+            <h3>Run CNN</h3>
+            <p>Train and evaluate the CNN deep learning model</p>
+            <a href="{% url 'run_cnn' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-red">
+        <div class="card-icon">&#128269;</div>
+        <div class="card-content">
+            <h3>Predict Depression</h3>
+            <p>Upload test EEG signals for depression prediction</p>
+            <a href="{% url 'predict_depression' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-teal">
+        <div class="card-icon">&#128200;</div>
+        <div class="card-content">
+            <h3>Comparison Graph</h3>
+            <p>Compare SVM vs CNN algorithm performance</p>
+            <a href="{% url 'comparison_graph' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+    <div class="card card-dark">
+        <div class="card-icon">&#128196;</div>
+        <div class="card-content">
+            <h3>Prediction History</h3>
+            <p>View all previous prediction results</p>
+            <a href="{% url 'prediction_history' %}" class="btn-card">Go</a>
+        </div>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>About the System</h3>
+    <p>This system uses Machine Learning and Deep Learning techniques to detect depression using EEG signals.
+       The system implements SVM and CNN algorithms for accurate classification of Normal and Depressed individuals.</p>
+    <ul>
+        <li><strong>SVM</strong> - Support Vector Machine for baseline classification</li>
+        <li><strong>CNN</strong> - Convolutional Neural Network for deep learning-based prediction</li>
+        <li>Performance evaluated using Accuracy, Precision, Recall, and F1-Score</li>
+    </ul>
+</div>
+{% endblock %}
